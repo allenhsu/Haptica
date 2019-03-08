@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 public enum HapticFeedbackStyle: Int {
     case light, medium, heavy
@@ -41,17 +42,27 @@ public enum Haptic {
         
         switch self {
         case .impact(let style):
-            let generator = UIImpactFeedbackGenerator(style: style.value)
-            generator.prepare()
-            generator.impactOccurred()
+            switch style {
+            case .light:
+                AudioServicesPlaySystemSound(1519)
+            case .medium:
+                AudioServicesPlaySystemSound(1519)
+            case .heavy:
+                AudioServicesPlaySystemSound(1520)
+            }
+//            let generator = UIImpactFeedbackGenerator(style: style.value)
+//            generator.prepare()
+//            generator.impactOccurred()
         case .notification(let type):
-            let generator = UINotificationFeedbackGenerator()
-            generator.prepare()
-            generator.notificationOccurred(type.value)
+            AudioServicesPlaySystemSound(1521)
+//            let generator = UINotificationFeedbackGenerator()
+//            generator.prepare()
+//            generator.notificationOccurred(type.value)
         case .selection:
-            let generator = UISelectionFeedbackGenerator()
-            generator.prepare()
-            generator.selectionChanged()
+            AudioServicesPlaySystemSound(1519)
+//            let generator = UISelectionFeedbackGenerator()
+//            generator.prepare()
+//            generator.selectionChanged()
         }
     }
 }
