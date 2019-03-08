@@ -54,7 +54,14 @@ public enum Haptic {
 //            generator.prepare()
 //            generator.impactOccurred()
         case .notification(let type):
-            AudioServicesPlaySystemSound(1521)
+            switch type {
+            case .success:
+                Haptic.play(".-O", delay: 0.1)
+            case .warning:
+                Haptic.play("O-.", delay: 0.1)
+            case .error:
+                Haptic.play(".-.-O-.", delay: 0.1)
+            }
 //            let generator = UINotificationFeedbackGenerator()
 //            generator.prepare()
 //            generator.notificationOccurred(type.value)
