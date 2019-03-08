@@ -60,7 +60,8 @@ public enum Haptic {
             case .warning:
                 Haptic.play("O-.", delay: 0.1)
             case .error:
-                Haptic.play(".-.-O-.", delay: 0.1)
+                AudioServicesPlaySystemSound(1521)
+//                Haptic.play(".-.-O-.", delay: 0.1)
             }
 //            let generator = UINotificationFeedbackGenerator()
 //            generator.prepare()
